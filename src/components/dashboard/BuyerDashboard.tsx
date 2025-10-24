@@ -23,7 +23,7 @@ import { Progress } from '../ui/progress';
 import { Label } from '../ui/label';
 
 export default function BuyerDashboard() {
-  const [filters, setFilters] = useState({ cropType: '', quality: '' });
+  const [filters, setFilters] = useState({ cropType: 'all', quality: 'all' });
   const [isEscrowModalOpen, setIsEscrowModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [escrowStep, setEscrowStep] = useState(0);
@@ -37,8 +37,8 @@ export default function BuyerDashboard() {
   const filteredMarketItems = marketItems.filter(item => {
     const receipt = receipts.find(r => r.id === item.receiptId);
     if (!receipt) return false;
-    const cropMatch = !filters.cropType || receipt.cropType === filters.cropType;
-    const qualityMatch = !filters.quality || receipt.quality === filters.quality;
+    const cropMatch = filters.cropType === 'all' || receipt.cropType === filters.cropType;
+    const qualityMatch = filters.quality === 'all' || receipt.quality === filters.quality;
     return cropMatch && qualityMatch;
   });
 
@@ -85,7 +85,7 @@ export default function BuyerDashboard() {
                         <SelectValue placeholder="Filter by Crop" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="">All Crops</SelectItem>
+                        <SelectItem value="all">All Crops</SelectItem>
                         <SelectItem value="Wheat">Wheat</SelectItem>
                         <SelectItem value="Corn">Corn</SelectItem>
                         <SelectItem value="Soybeans">Soybeans</SelectItem>
@@ -96,7 +96,7 @@ export default function BuyerDashboard() {
                         <SelectValue placeholder="Filter by Quality" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="">All Grades</SelectItem>
+                        <SelectItem value="all">All Grades</SelectItem>
                         <SelectItem value="A">Grade A</SelectItem>
                         <SelectItem value="B">Grade B</SelectItem>
                         <SelectItem value="C">Grade C</SelectItem>
@@ -197,5 +197,3 @@ export default function BuyerDashboard() {
     </div>
   );
 }
-
-    
