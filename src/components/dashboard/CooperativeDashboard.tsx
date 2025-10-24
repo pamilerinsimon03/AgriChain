@@ -31,7 +31,7 @@ import { farmers, loans, receipts } from '@/lib/data';
 import { format } from 'date-fns';
 import StatCard from './shared/StatCard';
 import { Users, Package, Landmark, FileText, ShoppingCart, ScanLine, PlusCircle } from 'lucide-react';
-import type { Receipt } from '@/lib/types';
+import type { Receipt, UserRole } from '@/lib/types';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import Link from 'next/link';
@@ -48,7 +48,12 @@ function getReceiptStatus(receipt: Receipt) {
     return <Badge>Issued</Badge>;
 }
 
-export default function CooperativeDashboard() {
+type CooperativeDashboardProps = {
+  onRoleChange: (role: UserRole) => void;
+};
+
+
+export default function CooperativeDashboard({ onRoleChange }: CooperativeDashboardProps) {
   const cooperativeId = 'user-1';
   const coopFarmers = farmers.filter(f => f.cooperativeId === cooperativeId);
   const coopFarmerIds = coopFarmers.map(f => f.id);
@@ -129,28 +134,16 @@ export default function CooperativeDashboard() {
           </DialogContent>
         </Dialog>
 
-        <Dialog>
-            <DialogTrigger asChild>
-                <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
-                    <CardContent className="p-0">
-                        <ShoppingCart className="w-10 h-10 mx-auto mb-2" />
-                        <h3 className="font-semibold">View Marketplace</h3>
-                        <p className="text-xs text-muted-foreground">See available produce</p>
-                    </CardContent>
-                </Card>
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Marketplace Access</DialogTitle>
-                    <DialogDescription>
-                        This would navigate to the marketplace page where users can buy and sell tokenized receipts.
-                    </DialogDescription>
-                </DialogHeader>
-                 <div className="flex justify-center pt-4">
-                    <Button size="lg" onClick={() => alert('Navigating to marketplace...')}>Go to Marketplace</Button>
-                </div>
-            </DialogContent>
-        </Dialog>
+        <Card 
+          className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
+          onClick={() => onRoleChange('Buyer')}
+        >
+            <CardContent className="p-0">
+                <ShoppingCart className="w-10 h-10 mx-auto mb-2" />
+                <h3 className="font-semibold">View Marketplace</h3>
+                <p className="text-xs text-muted-foreground">See available produce</p>
+            </CardContent>
+        </Card>
       </div>
 
       {/* Recent Activity Feed */}

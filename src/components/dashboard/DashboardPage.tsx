@@ -25,7 +25,7 @@ import { Button } from '../ui/button';
 import { Bell, Search } from 'lucide-react';
 import { Input } from '../ui/input';
 
-const roleToComponent: Record<UserRole, React.ComponentType> = {
+const roleToComponent: Record<UserRole, React.ComponentType<any>> = {
   Cooperative: CooperativeDashboard,
   Warehouse: WarehouseDashboard,
   Buyer: BuyerDashboard,
@@ -39,6 +39,10 @@ export default function DashboardPage() {
 
   const CurrentDashboard = roleToComponent[activeRole];
   const currentUser = users.find(u => u.role === activeRole);
+
+  const handleRoleChange = (newRole: UserRole) => {
+    setActiveRole(newRole);
+  };
 
   return (
     <SidebarProvider>
@@ -117,7 +121,7 @@ export default function DashboardPage() {
           </div>
         </header>
         <main className="flex-1 p-4 overflow-auto md:p-6 bg-secondary/40">
-          <CurrentDashboard />
+          <CurrentDashboard onRoleChange={handleRoleChange} />
         </main>
       </SidebarInset>
     </SidebarProvider>
