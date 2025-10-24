@@ -70,7 +70,7 @@ export default function CooperativeDashboard() {
       </div>
 
       {/* Action Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Dialog>
           <DialogTrigger asChild>
             <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
@@ -91,33 +91,6 @@ export default function CooperativeDashboard() {
             <div className="flex justify-around pt-4">
               <Button variant="outline" size="lg"><ScanLine className="mr-2"/> Scan QR Code</Button>
               <Button size="lg"><PlusCircle className="mr-2"/> Create Manually</Button>
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        <Dialog>
-          <DialogTrigger asChild>
-            <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
-              <CardContent className="p-0">
-                  <PlusCircle className="w-10 h-10 mx-auto mb-2" />
-                  <h3 className="font-semibold">Issue Receipt</h3>
-                  <p className="text-xs text-muted-foreground">For a new member deposit</p>
-              </CardContent>
-            </Card>
-          </DialogTrigger>
-          <DialogContent>
-             <DialogHeader>
-              <DialogTitle>Issue New Receipt</DialogTitle>
-              <DialogDescription>
-                This action is typically performed by a warehouse operator. This form is for demonstration purposes.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-4 py-4">
-              <div className="space-y-2">
-                <Label htmlFor="farmerId">Farmer ID</Label>
-                <Input id="farmerId" placeholder="e.g., user-1" />
-              </div>
-              <Button className="w-full">Generate Receipt</Button>
             </div>
           </DialogContent>
         </Dialog>

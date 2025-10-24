@@ -18,6 +18,7 @@ import WarehouseDashboard from './WarehouseDashboard';
 import BuyerDashboard from './BuyerDashboard';
 import LenderDashboard from './LenderDashboard';
 import RegulatorDashboard from './RegulatorDashboard';
+import FarmerDashboard from './FarmerDashboard';
 import { users } from '@/lib/data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
@@ -27,6 +28,7 @@ const roleToComponent: Record<UserRole, React.ComponentType> = {
   Buyer: BuyerDashboard,
   Lender: LenderDashboard,
   Regulator: RegulatorDashboard,
+  Farmer: FarmerDashboard,
 };
 
 export default function DashboardPage() {
@@ -64,6 +66,7 @@ export default function DashboardPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="Cooperative">Cooperative</SelectItem>
+                  <SelectItem value="Farmer">Farmer</SelectItem>
                   <SelectItem value="Warehouse">Warehouse</SelectItem>
                   <SelectItem value="Buyer">Buyer</SelectItem>
                   <SelectItem value="Lender">Lender</SelectItem>

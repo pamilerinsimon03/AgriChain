@@ -1,4 +1,3 @@
-
 import type { Receipt, Loan, MarketItem, User, Farmer } from './types';
 
 export const users: User[] = [
@@ -7,6 +6,7 @@ export const users: User[] = [
   { id: 'user-3', name: 'Global Provisions', role: 'Buyer' },
   { id: 'user-4', name: 'AgriBank', role: 'Lender' },
   { id: 'user-5', name: 'National Produce Board', role: 'Regulator' },
+  { id: 'farmer-101', name: 'Alice Peters', role: 'Farmer' },
 ];
 
 export const farmers: Farmer[] = [
@@ -271,5 +271,3 @@ export const marketItems: MarketItem[] = [
     listTimestamp: new Date('2024-07-22T14:00:00Z').toISOString(),
   }
 ];
-
-    

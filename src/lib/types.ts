@@ -1,4 +1,4 @@
-export type UserRole = 'Cooperative' | 'Warehouse' | 'Buyer' | 'Lender' | 'Regulator';
+export type UserRole = 'Cooperative' | 'Warehouse' | 'Buyer' | 'Lender' | 'Regulator' | 'Farmer';
 
 export type CropType = 'Wheat' | 'Corn' | 'Soybeans' | 'Rice' | 'Barley';
 
@@ -72,5 +72,3 @@ export type Farmer = {
   rating: number;
   ratingsCount: number;
 }
-
-    
