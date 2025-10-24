@@ -15,6 +15,8 @@ export function SignupFlow() {
   const [step, setStep] = useState<Step>('phone');
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
+  const [coopName, setCoopName] = useState('');
+  const [coopLocation, setCoopLocation] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -131,11 +133,11 @@ export function SignupFlow() {
             <form onSubmit={handleCoopSubmit} className="space-y-6">
                 <div className="space-y-2">
                     <Label htmlFor="coop-name">Cooperative Name</Label>
-                    <Input id="coop-name" required placeholder="e.g., Greenfield Farmers Coop" />
+                    <Input id="coop-name" required placeholder="e.g., Greenfield Farmers Coop" value={coopName} onChange={(e) => setCoopName(e.target.value)} />
                 </div>
                 <div className="space-y-2">
                     <Label htmlFor="coop-location">Location</Label>
-                    <Input id="coop-location" required placeholder="e.g., Oyo State, Nigeria" />
+                    <Input id="coop-location" required placeholder="e.g., Oyo State, Nigeria" value={coopLocation} onChange={(e) => setCoopLocation(e.target.value)} />
                 </div>
                 <div className="flex items-start space-x-3 pt-2">
                     <ShieldCheck className="h-8 w-8 text-muted-foreground flex-shrink-0" />
