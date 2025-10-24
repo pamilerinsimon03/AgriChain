@@ -1,4 +1,4 @@
-export type UserRole = 'Farmer' | 'Warehouse' | 'Buyer' | 'Lender' | 'Regulator';
+export type UserRole = 'Cooperative' | 'Warehouse' | 'Buyer' | 'Lender' | 'Regulator';
 
 export type CropType = 'Wheat' | 'Corn' | 'Soybeans' | 'Rice' | 'Barley';
 
@@ -6,7 +6,7 @@ export type QualityGrade = 'A' | 'B' | 'C';
 
 export type CustodyEvent = {
   actor: string;
-  role: UserRole;
+  role: UserRole | 'Farmer'; // Farmer can be part of the trail but not a primary user role
   action: string;
   timestamp: string;
 };
@@ -19,9 +19,10 @@ export type Receipt = {
   origin: string; // farm location
   creationTimestamp: string;
   custodyTrail: CustodyEvent[];
-  ownerId: string;
+  ownerId: string; // Farmer's ID
   warehouseId: string;
   isTokenized: boolean;
+  cooperativeId: string;
 };
 
 export type LoanStatus = 'Pending' | 'Approved' | 'Rejected' | 'Repaid';
@@ -62,4 +63,10 @@ export type User = {
     id: string;
     name: string;
     role: UserRole;
+};
+
+export type Farmer = {
+  id: string;
+  name: string;
+  cooperativeId: string;
 }

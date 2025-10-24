@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Separator } from '@/components/ui/separator';
 import { Logo } from '@/components/icons/Logo';
 import type { UserRole } from '@/lib/types';
-import FarmerDashboard from './FarmerDashboard';
+import CooperativeDashboard from './CooperativeDashboard';
 import WarehouseDashboard from './WarehouseDashboard';
 import BuyerDashboard from './BuyerDashboard';
 import LenderDashboard from './LenderDashboard';
@@ -22,7 +22,7 @@ import { users } from '@/lib/data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const roleToComponent: Record<UserRole, React.ComponentType> = {
-  Farmer: FarmerDashboard,
+  Cooperative: CooperativeDashboard,
   Warehouse: WarehouseDashboard,
   Buyer: BuyerDashboard,
   Lender: LenderDashboard,
@@ -30,7 +30,7 @@ const roleToComponent: Record<UserRole, React.ComponentType> = {
 };
 
 export default function DashboardPage() {
-  const [activeRole, setActiveRole] = useState<UserRole>('Farmer');
+  const [activeRole, setActiveRole] = useState<UserRole>('Cooperative');
 
   const CurrentDashboard = roleToComponent[activeRole];
   const currentUser = users.find(u => u.role === activeRole);
@@ -63,7 +63,7 @@ export default function DashboardPage() {
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Farmer">Farmer</SelectItem>
+                  <SelectItem value="Cooperative">Cooperative</SelectItem>
                   <SelectItem value="Warehouse">Warehouse</SelectItem>
                   <SelectItem value="Buyer">Buyer</SelectItem>
                   <SelectItem value="Lender">Lender</SelectItem>
