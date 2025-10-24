@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import {
@@ -138,17 +139,20 @@ export default function CooperativeDashboard() {
                 Select a member's receipt to use as collateral for a loan application.
               </DialogDescription>
             </DialogHeader>
-            <div className="space-y-4 py-4">
+            <form className="space-y-4 py-4" onSubmit={(e) => {
+              e.preventDefault();
+              alert('Loan application submitted!');
+            }}>
               <div className="space-y-2">
                 <Label htmlFor="receiptId">Collateral Receipt ID</Label>
-                <Input id="receiptId" placeholder="e.g., receipt-001" />
+                <Input id="receiptId" placeholder="e.g., receipt-001" defaultValue="receipt-005" required />
               </div>
                <div className="space-y-2">
                 <Label htmlFor="loanAmount">Loan Amount (₦)</Label>
-                <Input id="loanAmount" type="number" placeholder="e.g., 5000000" />
+                <Input id="loanAmount" type="number" placeholder="e.g., 5000000" defaultValue="18000000" required />
               </div>
-              <Button className="w-full">Submit Loan Application</Button>
-            </div>
+              <Button className="w-full" type="submit">Submit Loan Application</Button>
+            </form>
           </DialogContent>
         </Dialog>
 

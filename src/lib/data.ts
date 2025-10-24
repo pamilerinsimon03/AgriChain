@@ -1,3 +1,4 @@
+
 import type { Receipt, Loan, MarketItem, User, Farmer } from './types';
 
 export const users: User[] = [
@@ -195,6 +196,26 @@ export const loans: Loan[] = [
     interestRate: 16.0,
     status: 'Pending',
     requestTimestamp: new Date('2024-07-18T11:00:00Z').toISOString(),
+    lenderId: 'user-4'
+  },
+  {
+    id: 'loan-004',
+    farmerId: 'farmer-107',
+    receiptId: 'receipt-008',
+    amount: 40000000,
+    interestRate: 14.5,
+    status: 'Pending',
+    requestTimestamp: new Date('2024-07-22T09:30:00Z').toISOString(),
+    lenderId: 'user-4'
+  },
+  {
+    id: 'loan-005',
+    farmerId: 'farmer-103',
+    receiptId: 'receipt-006',
+    amount: 22000000,
+    interestRate: 15.2,
+    status: 'Rejected',
+    requestTimestamp: new Date('2024-07-19T16:00:00Z').toISOString(),
     lenderId: 'user-4'
   },
 ];
