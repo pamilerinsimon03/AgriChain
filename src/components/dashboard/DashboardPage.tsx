@@ -21,6 +21,9 @@ import RegulatorDashboard from './RegulatorDashboard';
 import FarmerDashboard from './FarmerDashboard';
 import { users } from '@/lib/data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '../ui/button';
+import { Bell, Search } from 'lucide-react';
+import { Input } from '../ui/input';
 
 const roleToComponent: Record<UserRole, React.ComponentType> = {
   Cooperative: CooperativeDashboard,
@@ -92,17 +95,28 @@ export default function DashboardPage() {
         </SidebarContent>
       </Sidebar>
       <SidebarInset>
-        <header className="flex items-center justify-between p-4 border-b">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">
-              {activeRole} Dashboard
-            </h1>
-          </div>
+        <header className="flex items-center justify-between p-4 border-b h-16">
           <div className="flex items-center gap-4">
              <SidebarTrigger className="md:hidden" />
+             <div className="hidden md:flex items-center gap-2">
+                <h1 className="text-2xl font-bold tracking-tight">
+                {activeRole} Dashboard
+                </h1>
+             </div>
+          </div>
+           <div className="md:hidden text-lg font-bold">{activeRole}</div>
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="hidden md:block relative w-full max-w-sm">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input placeholder="Search..." className="pl-8" />
+            </div>
+             <Button variant="ghost" size="icon" className="rounded-full">
+                <Bell className="h-5 w-5" />
+                <span className="sr-only">Notifications</span>
+             </Button>
           </div>
         </header>
-        <main className="flex-1 p-4 overflow-auto md:p-6">
+        <main className="flex-1 p-4 overflow-auto md:p-6 bg-secondary/40">
           <CurrentDashboard />
         </main>
       </SidebarInset>

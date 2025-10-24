@@ -2,12 +2,13 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/icons/Logo';
 import { ArrowRight, Bot, Milestone } from 'lucide-react';
+import Image from 'next/image';
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center px-8 sm:px-10 lg:px-12">
+        <div className="container flex h-14 items-center px-4 md:px-8">
           <div className="mr-4 flex items-center">
             <Logo className="w-8 h-8 mr-2 text-primary" />
             <span className="font-bold">AgriChain</span>
@@ -29,7 +30,7 @@ export default function LandingPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 lg:py-40">
-          <div className="container px-8 sm:px-10 lg:px-12">
+          <div className="container px-4 md:px-8">
             <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4 lg:col-span-7">
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-primary">
@@ -48,9 +49,11 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="lg:col-span-5 flex items-center justify-center">
-                 <img
+                 <Image
                   src="https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1974&auto=format&fit=crop"
                   alt="Happy Farmer"
+                  width={600}
+                  height={400}
                   className="rounded-xl shadow-2xl"
                 />
               </div>
@@ -60,7 +63,7 @@ export default function LandingPage() {
 
         {/* Stats Strip */}
         <section className="w-full py-12 md:py-24 bg-secondary">
-          <div className="container grid items-center justify-center gap-4 px-8 sm:px-10 lg:px-12 text-center md:grid-cols-3">
+          <div className="container grid items-center justify-center gap-8 px-4 text-center md:grid-cols-3 md:gap-4">
             <div className="space-y-3">
               <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl text-primary">₦50T</h3>
               <p className="mx-auto max-w-[200px] text-muted-foreground">
@@ -84,7 +87,7 @@ export default function LandingPage() {
 
         {/* Credibility Logos */}
         <section className="w-full py-12 md:py-24">
-          <div className="container px-8 sm:px-10 lg:px-12">
+          <div className="container px-4 md:px-8">
             <h2 className="text-center text-2xl font-semibold text-muted-foreground mb-10">
               Trusted by Industry Leaders and Innovators
             </h2>
@@ -103,8 +106,8 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t">
-        <div className="container flex flex-col md:flex-row items-center justify-between py-6 gap-4 px-8 sm:px-10 lg:px-12">
-          <p className="text-sm text-muted-foreground">
+        <div className="container flex flex-col md:flex-row items-center justify-between py-6 gap-4 px-4 md:px-8">
+          <p className="text-sm text-muted-foreground text-center md:text-left">
             © {new Date().getFullYear()} AgriChain. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-sm font-medium">

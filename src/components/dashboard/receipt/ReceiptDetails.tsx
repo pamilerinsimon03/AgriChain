@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { format } from "date-fns";
+import Image from 'next/image';
 import { 
     Share2, 
     Landmark, 
@@ -32,6 +33,7 @@ import {
     Truck,
     User
 } from "lucide-react";
+import { placeholderImages } from '@/lib/placeholder-images.json';
 
 export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
   const [creationDate, setCreationDate] = useState<string | null>(null);
@@ -49,10 +51,10 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                 <FileText className="w-8 h-8 text-primary" />
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight">Receipt Details</h1>
-                    <p className="text-muted-foreground text-sm">ID: {receipt.id}</p>
+                    <p className="text-muted-foreground text-sm truncate">ID: {receipt.id}</p>
                 </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
                 <Button variant="outline" size="sm"><Share2 className="mr-2"/> Share</Button>
                 <Button variant="outline" size="sm"><Landmark className="mr-2"/> Use as Collateral</Button>
                 <Button><ShoppingCart className="mr-2"/> List on Marketplace</Button>
@@ -64,7 +66,7 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
             <div className="md:col-span-2 space-y-6">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center justify-between">
+                        <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                             <span>{receipt.quantity} tons of {receipt.cropType}</span>
                              <TooltipProvider>
                                 <Tooltip>
@@ -143,9 +145,17 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                         <CardTitle className="flex items-center"><Camera className="mr-2"/>Attached Media</CardTitle>
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-2">
-                        <img src="https://picsum.photos/seed/receipt1/200/200" alt="Crop" className="rounded-md aspect-square object-cover" />
-                        <img src="https://picsum.photos/seed/receipt2/200/200" alt="Crop" className="rounded-md aspect-square object-cover" />
-                        <img src="https://picsum.photos/seed/receipt3/200/200" alt="Crop" className="rounded-md aspect-square object-cover" />
+                        {placeholderImages.slice(0, 3).map((img) => (
+                            <Image 
+                                key={img.src}
+                                src={img.src} 
+                                alt={img.alt} 
+                                width={200}
+                                height={200}
+                                data-ai-hint={img.aiHint}
+                                className="rounded-md aspect-square object-cover" 
+                            />
+                        ))}
                     </CardContent>
                 </Card>
                  <Card>
