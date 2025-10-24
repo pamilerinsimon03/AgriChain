@@ -114,6 +114,22 @@ export const receipts: Receipt[] = [
     isTokenized: false,
     cooperativeId: 'user-1'
   },
+   {
+    id: 'receipt-007',
+    cropType: 'Corn',
+    quantity: 120,
+    quality: 'B',
+    origin: 'Upland Farms',
+    creationTimestamp: new Date().toISOString(),
+    custodyTrail: [
+        { actor: 'farmer-101', role: 'Farmer', action: 'Harvested', timestamp: new Date(Date.now() - 86400000).toISOString() },
+        { actor: 'Secure Barns Inc.', role: 'Warehouse', action: 'Deposited & Verified', timestamp: new Date().toISOString() },
+    ],
+    ownerId: 'farmer-101',
+    warehouseId: 'user-2',
+    isTokenized: false,
+    cooperativeId: 'user-1'
+  }
 ];
 
 export const loans: Loan[] = [

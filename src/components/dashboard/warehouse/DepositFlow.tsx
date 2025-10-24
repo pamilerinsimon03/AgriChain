@@ -22,6 +22,8 @@ import {
     ClipboardSignature,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Step = "details" | "photos" | "confirm" | "complete";
 
@@ -32,10 +34,13 @@ const steps = [
     { id: "complete", name: "Complete" },
 ];
 
+const newReceiptId = 'receipt-007';
+
 export function DepositFlow({ closeDialog }: { closeDialog: () => void }) {
     const [step, setStep] = useState<Step>("details");
     const [isLoading, setIsLoading] = useState(false);
     const { toast } = useToast();
+    const router = useRouter();
 
     const currentStepIndex = steps.findIndex((s) => s.id === step);
     const progressValue = ((currentStepIndex + 1) / steps.length) * 100;
@@ -79,6 +84,11 @@ export function DepositFlow({ closeDialog }: { closeDialog: () => void }) {
         });
         goToNextStep();
         setIsLoading(false);
+    }
+
+    const handleViewReceipt = () => {
+        closeDialog();
+        router.push(`/dashboard/receipt/${newReceiptId}`);
     }
 
     return (
@@ -179,9 +189,9 @@ export function DepositFlow({ closeDialog }: { closeDialog: () => void }) {
                     <div className="text-center py-8">
                         <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                         <h3 className="text-xl font-bold">Receipt Issued</h3>
-                        <p className="text-muted-foreground mt-2">Receipt ID: receipt-007 has been created and sent to the farmer.</p>
+                        <p className="text-muted-foreground mt-2">Receipt ID: {newReceiptId} has been created and sent to the farmer.</p>
                          <div className="mt-6 flex justify-center gap-2">
-                           <Button variant="outline">View Receipt</Button>
+                           <Button variant="outline" onClick={handleViewReceipt}>View Receipt</Button>
                            <Button onClick={closeDialog}>Done</Button>
                         </div>
                     </div>
