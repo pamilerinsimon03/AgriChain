@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { checkForFraud, type FormState } from '@/app/actions';
 import {
   Select,
@@ -36,7 +37,7 @@ function SubmitButton() {
 }
 
 export default function FraudDetectionTool() {
-  const [state, formAction] = useFormState(checkForFraud, initialState);
+  const [state, formAction] = useActionState(checkForFraud, initialState);
 
   return (
     <div className="space-y-4">
