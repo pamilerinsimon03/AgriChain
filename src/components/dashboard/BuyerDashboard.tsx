@@ -20,6 +20,7 @@ import { Input } from '../ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 import { Progress } from '../ui/progress';
+import { Label } from '../ui/label';
 
 export default function BuyerDashboard() {
   const [filters, setFilters] = useState({ cropType: '', quality: '' });
