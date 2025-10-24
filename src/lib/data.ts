@@ -15,6 +15,8 @@ export const farmers: Farmer[] = [
     { id: 'farmer-104', name: 'David Musa', cooperativeId: 'user-1', rating: 4.5, ratingsCount: 12 },
     { id: 'farmer-105', name: 'Frank Haruna', cooperativeId: 'coop-2', rating: 4.7, ratingsCount: 41 },
     { id: 'farmer-106', name: 'Grace Adebayo', cooperativeId: 'coop-2', rating: 4.8, ratingsCount: 22 },
+    { id: 'farmer-107', name: 'Hassan Bello', cooperativeId: 'user-1', rating: 4.7, ratingsCount: 19 },
+    { id: 'farmer-108', name: 'Ibrahim Sani', cooperativeId: 'coop-2', rating: 4.6, ratingsCount: 28 },
 ]
 
 export const receipts: Receipt[] = [
@@ -47,7 +49,7 @@ export const receipts: Receipt[] = [
     ],
     ownerId: 'farmer-105',
     warehouseId: 'user-2',
-    isTokenized: false,
+    isTokenized: true,
     cooperativeId: 'coop-2'
   },
   {
@@ -111,7 +113,7 @@ export const receipts: Receipt[] = [
     ],
     ownerId: 'farmer-103',
     warehouseId: 'wh-2',
-    isTokenized: false,
+    isTokenized: true,
     cooperativeId: 'user-1'
   },
    {
@@ -129,6 +131,38 @@ export const receipts: Receipt[] = [
     warehouseId: 'user-2',
     isTokenized: false,
     cooperativeId: 'user-1'
+  },
+  {
+    id: 'receipt-008',
+    cropType: 'Rice',
+    quantity: 400,
+    quality: 'A',
+    origin: 'Delta Plains',
+    creationTimestamp: new Date('2024-07-19T09:00:00Z').toISOString(),
+    custodyTrail: [
+      { actor: 'Hassan Bello', role: 'Farmer', action: 'Harvested', timestamp: new Date('2024-07-18T14:00:00Z').toISOString() },
+      { actor: 'Secure Barns Inc.', role: 'Warehouse', action: 'Deposited & Verified', timestamp: new Date('2024-07-19T09:00:00Z').toISOString() },
+    ],
+    ownerId: 'farmer-107',
+    warehouseId: 'user-2',
+    isTokenized: true,
+    cooperativeId: 'user-1'
+  },
+  {
+    id: 'receipt-009',
+    cropType: 'Barley',
+    quantity: 180,
+    quality: 'A',
+    origin: 'Northern Fields',
+    creationTimestamp: new Date('2024-07-20T11:00:00Z').toISOString(),
+    custodyTrail: [
+      { actor: 'Ibrahim Sani', role: 'Farmer', action: 'Harvested', timestamp: new Date('2024-07-20T08:00:00Z').toISOString() },
+      { actor: 'AgroWarehouse Ltd', role: 'Warehouse', action: 'Deposited & Verified', timestamp: new Date('2024-07-20T11:00:00Z').toISOString() },
+    ],
+    ownerId: 'farmer-108',
+    warehouseId: 'wh-2',
+    isTokenized: true,
+    cooperativeId: 'coop-2'
   }
 ];
 
@@ -137,8 +171,8 @@ export const loans: Loan[] = [
     id: 'loan-001',
     farmerId: 'farmer-101',
     receiptId: 'receipt-001',
-    amount: 20000,
-    interestRate: 5,
+    amount: 15000000,
+    interestRate: 15,
     status: 'Approved',
     requestTimestamp: new Date('2024-07-10T10:00:00Z').toISOString(),
     lenderId: 'user-4',
@@ -148,8 +182,8 @@ export const loans: Loan[] = [
     id: 'loan-002',
     farmerId: 'farmer-105',
     receiptId: 'receipt-002',
-    amount: 35000,
-    interestRate: 5.5,
+    amount: 25000000,
+    interestRate: 15.5,
     status: 'Pending',
     requestTimestamp: new Date('2024-07-11T12:00:00Z').toISOString(),
   },
@@ -157,8 +191,8 @@ export const loans: Loan[] = [
     id: 'loan-003',
     farmerId: 'farmer-102',
     receiptId: 'receipt-005',
-    amount: 25000,
-    interestRate: 6.0,
+    amount: 18000000,
+    interestRate: 16.0,
     status: 'Pending',
     requestTimestamp: new Date('2024-07-18T11:00:00Z').toISOString(),
     lenderId: 'user-4'
@@ -170,22 +204,50 @@ export const marketItems: MarketItem[] = [
     id: 'market-001',
     receiptId: 'receipt-001',
     sellerId: 'farmer-101',
-    price: 45000, // price for 150 tons
+    price: 37500000, // price for 150 tons
     listTimestamp: new Date('2024-07-16T16:00:00Z').toISOString(),
   },
   {
     id: 'market-002',
     receiptId: 'receipt-003',
     sellerId: 'farmer-101',
-    price: 66000, // price for 220 tons
+    price: 55000000, // price for 220 tons
     listTimestamp: new Date('2024-07-17T10:00:00Z').toISOString(),
   },
   {
     id: 'market-003',
     receiptId: 'receipt-005',
     sellerId: 'farmer-102',
-    price: 54000, // price for 180 tons
+    price: 45000000, // price for 180 tons
     listTimestamp: new Date('2024-07-18T14:00:00Z').toISOString(),
+  },
+  {
+    id: 'market-004',
+    receiptId: 'receipt-002',
+    sellerId: 'farmer-105',
+    price: 75000000, // price for 300 tons
+    listTimestamp: new Date('2024-07-19T11:00:00Z').toISOString(),
+  },
+  {
+    id: 'market-005',
+    receiptId: 'receipt-006',
+    sellerId: 'farmer-103',
+    price: 62500000, // price for 250 tons
+    listTimestamp: new Date('2024-07-20T12:00:00Z').toISOString(),
+  },
+  {
+    id: 'market-006',
+    receiptId: 'receipt-008',
+    sellerId: 'farmer-107',
+    price: 100000000, // price for 400 tons
+    listTimestamp: new Date('2024-07-21T13:00:00Z').toISOString(),
+  },
+  {
+    id: 'market-007',
+    receiptId: 'receipt-009',
+    sellerId: 'farmer-108',
+    price: 48000000, // price for 180 tons
+    listTimestamp: new Date('2024-07-22T14:00:00Z').toISOString(),
   }
 ];
 

@@ -55,7 +55,7 @@ export default function CooperativeDashboard() {
   const coopLoans = loans.filter(l => coopFarmerIds.includes(l.farmerId));
 
   const totalMembers = coopFarmers.length;
-  const totalStoredValue = coopReceipts.reduce((acc, r) => acc + r.quantity * 280, 0); // Assuming avg $280/ton
+  const totalStoredValue = coopReceipts.reduce((acc, r) => acc + r.quantity * 250000, 0); // Assuming avg ₦250,000/ton
   const activeReceipts = coopReceipts.length;
 
   return (
@@ -63,7 +63,7 @@ export default function CooperativeDashboard() {
       {/* Top Summary */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard title="Members" value={totalMembers.toString()} icon={Users} description="Farmers in your cooperative" />
-        <StatCard title="Total Stored Value" value={`$${(totalStoredValue / 1000).toFixed(1)}k`} icon={Package} description="Estimated value of all crops" />
+        <StatCard title="Total Stored Value" value={`₦${(totalStoredValue / 1000000).toFixed(1)}M`} icon={Package} description="Estimated value of all crops" />
         <StatCard title="Active Receipts" value={activeReceipts.toString()} icon={FileText} description="Total digital receipts held" />
         <StatCard title="Pending Loans" value={coopLoans.filter(l => l.status === 'Pending').length.toString()} icon={Landmark} description="Awaiting lender approval" />
       </div>
@@ -144,8 +144,8 @@ export default function CooperativeDashboard() {
                 <Input id="receiptId" placeholder="e.g., receipt-001" />
               </div>
                <div className="space-y-2">
-                <Label htmlFor="loanAmount">Loan Amount ($)</Label>
-                <Input id="loanAmount" type="number" placeholder="e.g., 5000" />
+                <Label htmlFor="loanAmount">Loan Amount (₦)</Label>
+                <Input id="loanAmount" type="number" placeholder="e.g., 5000000" />
               </div>
               <Button className="w-full">Submit Loan Application</Button>
             </div>

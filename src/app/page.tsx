@@ -62,7 +62,7 @@ export default function LandingPage() {
         <section className="w-full py-12 md:py-24 bg-secondary">
           <div className="container grid items-center justify-center gap-4 px-8 sm:px-10 lg:px-12 text-center md:grid-cols-3">
             <div className="space-y-3">
-              <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl text-primary">$32B</h3>
+              <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl text-primary">₦50T</h3>
               <p className="mx-auto max-w-[200px] text-muted-foreground">
                 Financing gap for smallholder farmers in Africa.
               </p>

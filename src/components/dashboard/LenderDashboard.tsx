@@ -42,13 +42,13 @@ import {
           />
           <StatCard
             title="Total Disbursed"
-            value={`$${(totalLoaned / 1000).toFixed(1)}k`}
+            value={`₦${(totalLoaned / 1000000).toFixed(1)}M`}
             icon={PiggyBank}
             description="Value of active loans"
           />
           <StatCard
             title="Avg. Interest Rate"
-            value="5.25%"
+            value="15.5%"
             icon={Landmark}
             description="Average across active loans"
           />
@@ -77,7 +77,7 @@ import {
                     <TableCell className="font-medium">
                       ...{loan.farmerId.slice(-4)}
                     </TableCell>
-                    <TableCell>${loan.amount.toLocaleString()}</TableCell>
+                    <TableCell>₦{loan.amount.toLocaleString()}</TableCell>
                     <TableCell>
                       <Button variant="link" size="sm" className="p-0 h-auto" asChild>
                         <Link href={`/dashboard/receipt/${loan.receiptId}`}>

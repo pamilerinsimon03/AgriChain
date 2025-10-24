@@ -13,12 +13,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { marketItems, receipts, farmers } from '@/lib/data';
 import StatCard from './shared/StatCard';
-import { ShoppingCart, FileCheck, Truck, BarChart, Star, X } from 'lucide-react';
+import { ShoppingCart, FileCheck, Truck, BarChart, Star } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Input } from '../ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog';
 import { Progress } from '../ui/progress';
 import { Label } from '../ui/label';
 
@@ -68,7 +68,7 @@ export default function BuyerDashboard() {
         <StatCard title="Active Listings" value={activeListings.toString()} icon={ShoppingCart} description="Tokenized receipts for sale"/>
         <StatCard title="Total Quantity" value={`${totalAvailableQuantity.toLocaleString()} tons`} icon={BarChart} description="Total available produce"/>
         <StatCard title="My Purchases" value="0" icon={FileCheck} description="Completed transactions"/>
-        <StatCard title="In Escrow" value="$0" icon={Truck} description="Payments pending delivery"/>
+        <StatCard title="In Escrow" value="₦0" icon={Truck} description="Payments pending delivery"/>
       </div>
       <Card>
         <CardHeader>
@@ -89,6 +89,8 @@ export default function BuyerDashboard() {
                         <SelectItem value="Wheat">Wheat</SelectItem>
                         <SelectItem value="Corn">Corn</SelectItem>
                         <SelectItem value="Soybeans">Soybeans</SelectItem>
+                        <SelectItem value="Rice">Rice</SelectItem>
+                        <SelectItem value="Barley">Barley</SelectItem>
                     </SelectContent>
                 </Select>
                  <Select value={filters.quality} onValueChange={(value) => setFilters(prev => ({...prev, quality: value}))}>
@@ -125,7 +127,7 @@ export default function BuyerDashboard() {
                         </div>
                     </CardHeader>
                     <CardContent className="flex-grow space-y-2">
-                      <p className="text-2xl font-bold">${item.price.toLocaleString()}</p>
+                      <p className="text-2xl font-bold">₦{item.price.toLocaleString()}</p>
                       <p className="text-sm text-muted-foreground">
                         {receipt.quantity} tons available
                       </p>
@@ -151,7 +153,7 @@ export default function BuyerDashboard() {
             <DialogHeader>
                 <DialogTitle>Secure Escrow Purchase</DialogTitle>
                 <DialogDescription>
-                    You are purchasing {selectedItem?.receipt.quantity} tons of {selectedItem?.receipt.cropType} for ${selectedItem?.price.toLocaleString()}.
+                    You are purchasing {selectedItem?.receipt.quantity} tons of {selectedItem?.receipt.cropType} for ₦{selectedItem?.price.toLocaleString()}.
                 </DialogDescription>
             </DialogHeader>
             <div className="py-4 space-y-4">

@@ -42,7 +42,7 @@ export async function checkForFraud(prevState: FormState, formData: FormData): P
   
   // In a real app, this would come from external APIs (weather data, market prices, etc.)
   const externalSourceData = `
-    Market Price for ${receipt.cropType} on ${new Date(receipt.creationTimestamp).toLocaleDateString()}: $280/ton
+    Market Price for ${receipt.cropType} on ${new Date(receipt.creationTimestamp).toLocaleDateString()}: ₦250,000/ton
     Weather at ${receipt.origin} during harvest season: Normal
     Historical yield for ${receipt.origin}: Consistent with declared quantity.
     Reputation of Warehouse ID ${receipt.warehouseId}: Good
