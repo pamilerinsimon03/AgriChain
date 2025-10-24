@@ -7,7 +7,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center px-4 sm:px-6 lg:px-8">
+        <div className="container flex h-14 items-center px-8 sm:px-10 lg:px-12">
           <div className="mr-4 flex items-center">
             <Logo className="w-8 h-8 mr-2 text-primary" />
             <span className="font-bold">AgriChain</span>
@@ -29,7 +29,7 @@ export default function LandingPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 lg:py-40">
-          <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="container px-8 sm:px-10 lg:px-12">
             <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col justify-center space-y-4 lg:col-span-7">
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-primary">
@@ -60,7 +60,7 @@ export default function LandingPage() {
 
         {/* Stats Strip */}
         <section className="w-full py-12 md:py-24 bg-secondary">
-          <div className="container grid items-center justify-center gap-4 px-4 sm:px-6 lg:px-8 text-center md:grid-cols-3">
+          <div className="container grid items-center justify-center gap-4 px-8 sm:px-10 lg:px-12 text-center md:grid-cols-3">
             <div className="space-y-3">
               <h3 className="text-3xl font-bold tracking-tighter sm:text-4xl text-primary">$32B</h3>
               <p className="mx-auto max-w-[200px] text-muted-foreground">
@@ -84,7 +84,7 @@ export default function LandingPage() {
 
         {/* Credibility Logos */}
         <section className="w-full py-12 md:py-24">
-          <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="container px-8 sm:px-10 lg:px-12">
             <h2 className="text-center text-2xl font-semibold text-muted-foreground mb-10">
               Trusted by Industry Leaders and Innovators
             </h2>
@@ -92,10 +92,6 @@ export default function LandingPage() {
               <div className="flex items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
                 <Milestone className="w-10 h-10 text-gray-500" />
                 <span className="text-xl font-semibold text-gray-500">AFEX</span>
-              </div>
-              <div className="flex items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
-                 <University className="w-10 h-10 text-gray-500" />
-                <span className="text-xl font-semibold text-gray-500">University of Ibadan</span>
               </div>
                <div className="flex items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
                 <Bot className="w-10 h-10 text-gray-500" />
@@ -107,7 +103,7 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t">
-        <div className="container flex flex-col md:flex-row items-center justify-between py-6 gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="container flex flex-col md:flex-row items-center justify-between py-6 gap-4 px-8 sm:px-10 lg:px-12">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} AgriChain. All rights reserved.
           </p>
