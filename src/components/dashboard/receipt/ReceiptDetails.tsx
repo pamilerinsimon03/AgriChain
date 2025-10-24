@@ -145,7 +145,7 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                         <CardTitle className="flex items-center"><Camera className="mr-2"/>Attached Media</CardTitle>
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-2">
-                        {placeholderImages.placeholderImages.slice(0, 3).map((img) => (
+                        {placeholderImages.placeholderImages.slice(0, 4).map((img) => (
                             <Image 
                                 key={img.src}
                                 src={img.src} 
