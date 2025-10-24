@@ -23,13 +23,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
+  DialogClose,
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { farmers, loans, receipts, marketItems } from '@/lib/data';
 import { format } from 'date-fns';
 import StatCard from './shared/StatCard';
-import { Package, FileText, Landmark, ShoppingCart } from 'lucide-react';
+import { Package, FileText, Landmark, ShoppingCart, MessageSquare } from 'lucide-react';
 import type { Receipt } from '@/lib/types';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -69,7 +71,7 @@ export default function FarmerDashboard() {
       </div>
 
       {/* Action Cards */}
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-3">
         <Dialog>
           <DialogTrigger asChild>
             <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
@@ -135,6 +137,44 @@ export default function FarmerDashboard() {
                   </div>
                   <Button className="w-full" type="submit">List for Sale</Button>
                 </form>
+            </DialogContent>
+        </Dialog>
+
+        <Dialog>
+            <DialogTrigger asChild>
+                <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+                    <CardContent className="p-0">
+                        <MessageSquare className="w-10 h-10 mx-auto mb-2" />
+                        <h3 className="font-semibold">SMS/USSD Help</h3>
+                        <p className="text-xs text-muted-foreground">Access services offline</p>
+                    </CardContent>
+                </Card>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>USSD / SMS Instructions</DialogTitle>
+                    <DialogDescription>
+                        If you have limited internet, you can use these codes to manage your receipts.
+                    </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-6 py-4">
+                    <div>
+                        <h4 className="font-medium">Check Receipt Status</h4>
+                        <p className="text-muted-foreground">Dial <code className="bg-muted px-2 py-1 rounded-md">*347*123*1#</code> and follow the prompts.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-medium">Confirm Loan Disbursement</h4>
+                        <p className="text-muted-foreground">Send <code className="bg-muted px-2 py-1 rounded-md">CONFIRM [LoanID]</code> to <code className="bg-muted px-2 py-1 rounded-md">5678</code>.</p>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                        Standard network charges may apply. Contact your cooperative leader for assistance.
+                    </p>
+                </div>
+                 <DialogFooter>
+                    <DialogClose asChild>
+                        <Button type="button">Close</Button>
+                    </DialogClose>
+                </DialogFooter>
             </DialogContent>
         </Dialog>
       </div>
