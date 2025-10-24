@@ -37,7 +37,7 @@ export default function WarehouseDashboard() {
 
   return (
     <div className="space-y-6">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             <StatCard title="Total Inventory" value={`${totalQuantity.toLocaleString()} tons`} icon={Warehouse} description="Total crops stored"/>
             <StatCard title="Receipts Issued" value={warehouseReceipts.length.toString()} icon={ShieldCheck} description="Digital receipts"/>
             <StatCard title="Crop Varieties" value={new Set(warehouseReceipts.map(r => r.cropType)).size.toString()} icon={Wheat} description="Types of crops"/>

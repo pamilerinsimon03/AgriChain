@@ -67,7 +67,7 @@ export default function CooperativeDashboard({ onRoleChange }: CooperativeDashbo
   return (
     <div className="space-y-6">
       {/* Top Summary */}
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatCard title="Members" value={totalMembers.toString()} icon={Users} description="Farmers in your cooperative" />
         <StatCard title="Total Stored Value" value={`₦${(totalStoredValue / 1000000).toFixed(1)}M`} icon={Package} description="Value of crops" />
         <StatCard title="Active Receipts" value={activeReceipts.toString()} icon={FileText} description="Digital receipts held" />
