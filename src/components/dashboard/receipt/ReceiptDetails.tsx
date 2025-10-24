@@ -37,6 +37,7 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
   const [creationDate, setCreationDate] = useState<string | null>(null);
 
   useEffect(() => {
+    // This will only run on the client, after hydration
     setCreationDate(format(new Date(receipt.creationTimestamp), "PPP p"));
   }, [receipt.creationTimestamp]);
 
@@ -122,9 +123,11 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                                         <p className="text-sm text-muted-foreground flex items-center gap-2">
                                             <User className="w-3 h-3"/> {event.actor} ({event.role})
                                         </p>
-                                         <p className="text-xs text-muted-foreground mt-1">
-                                            {format(new Date(event.timestamp), "PPP p")}
-                                        </p>
+                                        {creationDate && (
+                                            <p className="text-xs text-muted-foreground mt-1">
+                                                {format(new Date(event.timestamp), "PPP p")}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
                             ))}
