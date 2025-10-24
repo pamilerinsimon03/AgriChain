@@ -71,7 +71,34 @@ export default function FarmerDashboard() {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+        <div className="space-y-6 lg:order-2">
+             <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                        <TrendingUp />
+                        Daily Commodity Prices
+                    </CardTitle>
+                    <CardDescription>Live market prices per ton.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-4">
+                        {commodityPrices.map((item) => (
+                            <li key={item.cropType} className="flex items-center justify-between">
+                                <span className="font-medium">{item.cropType}</span>
+                                <div className="flex items-center gap-2">
+                                     <span className={`flex items-center text-sm font-semibold ${item.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                        {item.change >= 0 ? <ArrowUp className="w-4 h-4 mr-1" /> : <ArrowDown className="w-4 h-4 mr-1" />}
+                                        {item.change.toFixed(1)}%
+                                    </span>
+                                    <span className="font-semibold text-right w-[100px]">₦{item.price.toLocaleString()}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </CardContent>
+            </Card>
+        </div>
+        <div className="lg:col-span-2 space-y-6 lg:order-1">
             {/* Action Cards */}
             <div className="grid gap-4 md:grid-cols-3">
                 <Dialog>
@@ -218,33 +245,6 @@ export default function FarmerDashboard() {
                     ))}
                     </TableBody>
                 </Table>
-                </CardContent>
-            </Card>
-        </div>
-        <div className="space-y-6">
-             <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <TrendingUp />
-                        Daily Commodity Prices
-                    </CardTitle>
-                    <CardDescription>Live market prices per ton.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-4">
-                        {commodityPrices.map((item) => (
-                            <li key={item.cropType} className="flex items-center justify-between">
-                                <span className="font-medium">{item.cropType}</span>
-                                <div className="flex items-center gap-2">
-                                     <span className={`flex items-center text-sm font-semibold ${item.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                        {item.change >= 0 ? <ArrowUp className="w-4 h-4 mr-1" /> : <ArrowDown className="w-4 h-4 mr-1" />}
-                                        {item.change.toFixed(1)}%
-                                    </span>
-                                    <span className="font-semibold text-right w-[100px]">₦{item.price.toLocaleString()}</span>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
                 </CardContent>
             </Card>
         </div>
