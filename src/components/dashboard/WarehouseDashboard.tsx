@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -14,20 +15,22 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { receipts } from '@/lib/data';
 import StatCard from './shared/StatCard';
-import { Warehouse, Wheat, ShieldCheck, Scale } from 'lucide-react';
+import { Warehouse, Wheat, ShieldCheck, Scale, PlusCircle } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { DepositFlow } from './warehouse/DepositFlow';
+import Link from 'next/link';
 
 export default function WarehouseDashboard() {
+  const [isDepositOpen, setIsDepositOpen] = useState(false);
   const warehouseId = 'user-2';
   const warehouseReceipts = receipts.filter(r => r.warehouseId === warehouseId);
   const totalQuantity = warehouseReceipts.reduce((sum, r) => sum + r.quantity, 0);
@@ -42,59 +45,33 @@ export default function WarehouseDashboard() {
         </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Issue New Receipt</CardTitle>
-            <CardDescription>
-              Log a new deposit and generate a blockchain-anchored receipt.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="farmerId">Farmer ID</Label>
-              <Input id="farmerId" placeholder="e.g., user-1" />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="cropType">Crop Type</Label>
-                <Select>
-                  <SelectTrigger id="cropType">
-                    <SelectValue placeholder="Select crop" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Wheat">Wheat</SelectItem>
-                    <SelectItem value="Corn">Corn</SelectItem>
-                    <SelectItem value="Soybeans">Soybeans</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="quantity">Quantity (tons)</Label>
-                <Input id="quantity" type="number" placeholder="e.g., 150" />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                    <Label htmlFor="quality">Quality Grade</Label>
-                    <Select>
-                    <SelectTrigger id="quality">
-                        <SelectValue placeholder="Select grade" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="A">A</SelectItem>
-                        <SelectItem value="B">B</SelectItem>
-                        <SelectItem value="C">C</SelectItem>
-                    </SelectContent>
-                    </Select>
-                </div>
-                <div className="space-y-2">
-                    <Label htmlFor="origin">Origin Farm</Label>
-                    <Input id="origin" placeholder="e.g., Green Valley Farm" />
-                </div>
-            </div>
-            <Button className="w-full">Generate Receipt</Button>
-          </CardContent>
-        </Card>
+        <Dialog open={isDepositOpen} onOpenChange={setIsDepositOpen}>
+            <Card>
+            <CardHeader>
+                <CardTitle>Issue New Receipt</CardTitle>
+                <CardDescription>
+                Log a new deposit and generate a blockchain-anchored receipt.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <DialogTrigger asChild>
+                    <Button className="w-full">
+                        <PlusCircle className="mr-2" />
+                        Start New Deposit
+                    </Button>
+                </DialogTrigger>
+            </CardContent>
+            </Card>
+            <DialogContent className="max-w-3xl">
+                <DialogHeader>
+                    <DialogTitle>New Warehouse Deposit</DialogTitle>
+                    <DialogDescription>
+                        Follow the steps to issue a new digital receipt for a crop deposit.
+                    </DialogDescription>
+                </DialogHeader>
+                <DepositFlow closeDialog={() => setIsDepositOpen(false)} />
+            </DialogContent>
+        </Dialog>
         <Card>
           <CardHeader>
             <CardTitle>Inventory Overview</CardTitle>
@@ -110,6 +87,7 @@ export default function WarehouseDashboard() {
                   <TableHead>Crop</TableHead>
                   <TableHead>Quantity (t)</TableHead>
                   <TableHead>Owner</TableHead>
+                  <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -121,6 +99,11 @@ export default function WarehouseDashboard() {
                     <TableCell>{receipt.cropType}</TableCell>
                     <TableCell>{receipt.quantity}</TableCell>
                     <TableCell>...{receipt.ownerId.slice(-4)}</TableCell>
+                    <TableCell className="text-right">
+                       <Button asChild variant="outline" size="sm">
+                          <Link href={`/dashboard/receipt/${receipt.id}`}>View</Link>
+                       </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

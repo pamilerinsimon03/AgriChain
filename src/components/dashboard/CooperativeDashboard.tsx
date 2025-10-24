@@ -33,6 +33,7 @@ import { Users, Package, Landmark, FileText, ShoppingCart, ScanLine, PlusCircle 
 import type { Receipt } from '@/lib/types';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
+import Link from 'next/link';
 
 function getReceiptStatus(receipt: Receipt) {
     if (loans.some(l => l.receiptId === receipt.id && (l.status === 'Approved' || l.status === 'Pending'))) {
@@ -206,8 +207,8 @@ export default function CooperativeDashboard() {
                         <TableCell className="text-center">{getReceiptStatus(receipt)}</TableCell>
                         <TableCell>{format(new Date(receipt.creationTimestamp), 'PP')}</TableCell>
                         <TableCell className="text-right">
-                        <Button variant="outline" size="sm">
-                            View
+                        <Button variant="outline" size="sm" asChild>
+                           <Link href={`/dashboard/receipt/${receipt.id}`}>View</Link>
                         </Button>
                         </TableCell>
                     </TableRow>

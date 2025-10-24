@@ -11,6 +11,7 @@ import { marketItems, receipts } from '@/lib/data';
 import StatCard from './shared/StatCard';
 import { ShoppingCart, FileCheck, Truck, BarChart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 export default function BuyerDashboard() {
   const activeListings = marketItems.length;
@@ -54,6 +55,9 @@ export default function BuyerDashboard() {
                   <p className="text-sm text-muted-foreground">
                     {receipt.quantity} tons available
                   </p>
+                  <Button variant="link" size="sm" className="p-0 h-auto" asChild>
+                    <Link href={`/dashboard/receipt/${receipt.id}`}>View Receipt</Link>
+                  </Button>
                 </CardContent>
                 <CardFooter>
                   <Button className="w-full">

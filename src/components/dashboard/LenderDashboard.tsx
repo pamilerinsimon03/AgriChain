@@ -13,12 +13,12 @@ import {
     TableHeader,
     TableRow,
   } from '@/components/ui/table';
-  import { Badge } from '@/components/ui/badge';
   import { Button } from '@/components/ui/button';
   import { loans } from '@/lib/data';
   import { formatDistanceToNow } from 'date-fns';
   import StatCard from './shared/StatCard';
   import { Landmark, PiggyBank, CircleAlert, CircleCheck } from 'lucide-react';
+  import Link from 'next/link';
   
   export default function LenderDashboard() {
     const pendingLoans = loans.filter(l => l.status === 'Pending');
@@ -79,8 +79,10 @@ import {
                     </TableCell>
                     <TableCell>${loan.amount.toLocaleString()}</TableCell>
                     <TableCell>
-                      <Button variant="link" size="sm" className="p-0 h-auto">
-                        ...{loan.receiptId.slice(-6)}
+                      <Button variant="link" size="sm" className="p-0 h-auto" asChild>
+                        <Link href={`/dashboard/receipt/${loan.receiptId}`}>
+                          ...{loan.receiptId.slice(-6)}
+                        </Link>
                       </Button>
                     </TableCell>
                     <TableCell>
