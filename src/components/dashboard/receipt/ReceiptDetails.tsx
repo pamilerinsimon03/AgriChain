@@ -37,11 +37,13 @@ import placeholderImages from '@/lib/placeholder-images.json';
 
 export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
   const [creationDate, setCreationDate] = useState<string | null>(null);
+  const [custodyDates, setCustodyDates] = useState<(string | null)[]>([]);
 
   useEffect(() => {
     // This will only run on the client, after hydration
     setCreationDate(format(new Date(receipt.creationTimestamp), "PPP p"));
-  }, [receipt.creationTimestamp]);
+    setCustodyDates(receipt.custodyTrail.map(event => format(new Date(event.timestamp), "PPP p")));
+  }, [receipt.creationTimestamp, receipt.custodyTrail]);
 
 
   return (
@@ -125,11 +127,9 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                                         <p className="text-sm text-muted-foreground flex items-center gap-2">
                                             <User className="w-3 h-3"/> {event.actor} ({event.role})
                                         </p>
-                                        {creationDate && (
-                                            <p className="text-xs text-muted-foreground mt-1">
-                                                {format(new Date(event.timestamp), "PPP p")}
-                                            </p>
-                                        )}
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                            {custodyDates[index] || 'Loading...'}
+                                        </p>
                                     </div>
                                 </div>
                             ))}
