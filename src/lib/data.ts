@@ -1,4 +1,4 @@
-import type { Receipt, Loan, MarketItem, User, Farmer } from './types';
+import type { Receipt, Loan, MarketItem, User, Farmer, CommodityPrice } from './types';
 
 export const users: User[] = [
   { id: 'user-1', name: 'Greenfield Coop', role: 'Cooperative' },
@@ -271,3 +271,13 @@ export const marketItems: MarketItem[] = [
     listTimestamp: new Date('2024-07-22T14:00:00Z').toISOString(),
   }
 ];
+
+export const commodityPrices: CommodityPrice[] = [
+  { cropType: 'Corn', price: 260000, change: 1.5 },
+  { cropType: 'Wheat', price: 245000, change: -0.8 },
+  { cropType: 'Soybeans', price: 275000, change: 2.1 },
+  { cropType: 'Rice', price: 310000, change: 0.5 },
+  { cropType: 'Barley', price: 230000, change: -1.2 },
+];
+
+    

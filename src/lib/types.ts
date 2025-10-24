@@ -72,3 +72,11 @@ export type Farmer = {
   rating: number;
   ratingsCount: number;
 }
+
+export type CommodityPrice = {
+  cropType: CropType;
+  price: number;
+  change: number; // percentage change
+}
+
+    

@@ -50,7 +50,7 @@ export default function DashboardPage() {
         <SidebarHeader className="p-4">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10">
-              <Logo className="w-8 h-8 text-primary" />
+              <Logo className="w-8 h-8 text-white" />
             </div>
             <div className="flex flex-col">
               <h2 className="text-lg font-bold text-sidebar-foreground">AgriChain</h2>
@@ -127,3 +127,5 @@ export default function DashboardPage() {
     </SidebarProvider>
   );
 }
+
+    

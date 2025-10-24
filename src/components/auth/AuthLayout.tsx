@@ -52,3 +52,5 @@ const Card = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => 
 const CardContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div className={`p-6 ${className}`} {...props} />
 );
+
+    

@@ -96,7 +96,7 @@ export default function LandingPage() {
                 <Milestone className="w-10 h-10 text-gray-500" />
                 <span className="text-xl font-semibold text-gray-500">AFEX</span>
               </div>
-               <div className="flex items-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+               <div className="flex items-center gap-3 grayscale opacity-60 hover:grayscale-old hover:opacity-100 transition-all">
                 <Bot className="w-10 h-10 text-gray-500" />
                 <span className="text-xl font-semibold text-gray-500">Bank of Agriculture</span>
               </div>
@@ -120,3 +120,5 @@ export default function LandingPage() {
     </div>
   );
 }
+
+    
