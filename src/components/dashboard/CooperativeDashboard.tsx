@@ -1,7 +1,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -32,7 +31,6 @@ import { format } from 'date-fns';
 import StatCard from './shared/StatCard';
 import { Users, Package, Landmark, FileText, ShoppingCart, ScanLine, PlusCircle } from 'lucide-react';
 import type { Receipt } from '@/lib/types';
-import { Textarea } from '../ui/textarea';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 
@@ -40,7 +38,9 @@ function getReceiptStatus(receipt: Receipt) {
     if (loans.some(l => l.receiptId === receipt.id && (l.status === 'Approved' || l.status === 'Pending'))) {
         return <Badge variant="secondary" className="bg-yellow-500 text-white">Collateralized</Badge>;
     }
-    if (receipt.isTokenized) { // Assuming liquidated means sold/tokenized for market
+    if (receipt.isTokenized) { 
+        const isInMarket = loans.some(l => l.receiptId === receipt.id);
+        if (isInMarket) return <Badge variant="outline">In Market</Badge>
         return <Badge variant="outline">Liquidated</Badge>;
     }
     return <Badge>Issued</Badge>;

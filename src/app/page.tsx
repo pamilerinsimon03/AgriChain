@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/icons/Logo';
-import { ArrowRight, University, Milestone, Bot } from 'lucide-react';
+import { ArrowRight, Bot, Milestone } from 'lucide-react';
 
 export default function LandingPage() {
   return (
@@ -17,10 +17,10 @@ export default function LandingPage() {
           </nav>
           <div className="flex items-center justify-end space-x-2">
             <Button variant="ghost" asChild>
-              <Link href="/dashboard">Sign In</Link>
+              <Link href="/login">Sign In</Link>
             </Button>
             <Button asChild>
-              <Link href="/dashboard">Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/signup">Get Started <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </div>
@@ -39,8 +39,8 @@ export default function LandingPage() {
                   We bridge the financing gap for farmers by transforming harvested crops into bankable assets through blockchain technology.
                 </p>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg">
-                    Request a Pilot
+                  <Button size="lg" asChild>
+                    <Link href="/signup">Request a Pilot</Link>
                   </Button>
                   <Button size="lg" variant="outline">
                     Contact Us
