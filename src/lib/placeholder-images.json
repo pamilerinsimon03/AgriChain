@@ -2,9 +2,9 @@
 {
   "placeholderImages": [
     {
-      "src": "https://images.unsplash.com/photo-1579172932352-782a14b3a67d?q=80&w=2070&auto=format&fit=crop",
-      "alt": "Silo",
-      "aiHint": "silo"
+      "src": "https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1974&auto=format&fit=crop",
+      "alt": "Farmer in a field",
+      "aiHint": "farmer field"
     },
     {
       "src": "https://images.unsplash.com/photo-1627896152339-b454643f25c8?q=80&w=2070&auto=format&fit=crop",
@@ -12,9 +12,9 @@
       "aiHint": "grain pour"
     },
     {
-      "src": "https://images.unsplash.com/photo-1506094543521-11a733c16b43?q=80&w=2072&auto=format&fit=crop",
-      "alt": "Warehouse interior",
-      "aiHint": "warehouse interior"
+      "src": "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?q=80&w=1974&auto=format&fit=crop",
+      "alt": "Warehouse interior with sacks",
+      "aiHint": "warehouse sacks"
     },
     {
       "src": "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070&auto=format&fit=crop",
