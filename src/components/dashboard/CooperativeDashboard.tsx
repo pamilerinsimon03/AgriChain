@@ -1,3 +1,7 @@
+
+'use client';
+
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -13,6 +17,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { farmers, loans, receipts } from '@/lib/data';
@@ -20,6 +32,9 @@ import { format } from 'date-fns';
 import StatCard from './shared/StatCard';
 import { Users, Package, Landmark, FileText, ShoppingCart, ScanLine, PlusCircle } from 'lucide-react';
 import type { Receipt } from '@/lib/types';
+import { Textarea } from '../ui/textarea';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
 
 function getReceiptStatus(receipt: Receipt) {
     if (loans.some(l => l.receiptId === receipt.id && (l.status === 'Approved' || l.status === 'Pending'))) {
@@ -54,34 +69,110 @@ export default function CooperativeDashboard() {
 
       {/* Action Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-         <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
-            <CardContent className="p-0">
-                <ScanLine className="w-10 h-10 mx-auto mb-2" />
-                <h3 className="font-semibold">Record Deposit</h3>
-                <p className="text-xs text-muted-foreground">Scan QR or create new</p>
-            </CardContent>
-         </Card>
-         <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
-            <CardContent className="p-0">
-                <PlusCircle className="w-10 h-10 mx-auto mb-2" />
-                <h3 className="font-semibold">Issue Receipt</h3>
-                <p className="text-xs text-muted-foreground">For a new member deposit</p>
-            </CardContent>
-         </Card>
-         <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
-            <CardContent className="p-0">
-                <Landmark className="w-10 h-10 mx-auto mb-2" />
-                <h3 className="font-semibold">Request Loan</h3>
-                <p className="text-xs text-muted-foreground">For a cooperative member</p>
-            </CardContent>
-         </Card>
-         <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
-            <CardContent className="p-0">
-                <ShoppingCart className="w-10 h-10 mx-auto mb-2" />
-                <h3 className="font-semibold">View Marketplace</h3>
-                <p className="text-xs text-muted-foreground">See available produce</p>
-            </CardContent>
-         </Card>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+              <CardContent className="p-0">
+                  <ScanLine className="w-10 h-10 mx-auto mb-2" />
+                  <h3 className="font-semibold">Record Deposit</h3>
+                  <p className="text-xs text-muted-foreground">Scan QR or create new</p>
+              </CardContent>
+            </Card>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Record a New Deposit</DialogTitle>
+              <DialogDescription>
+                Choose to scan a pre-existing QR code from a warehouse or create a new deposit record manually.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex justify-around pt-4">
+              <Button variant="outline" size="lg"><ScanLine className="mr-2"/> Scan QR Code</Button>
+              <Button size="lg"><PlusCircle className="mr-2"/> Create Manually</Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+              <CardContent className="p-0">
+                  <PlusCircle className="w-10 h-10 mx-auto mb-2" />
+                  <h3 className="font-semibold">Issue Receipt</h3>
+                  <p className="text-xs text-muted-foreground">For a new member deposit</p>
+              </CardContent>
+            </Card>
+          </DialogTrigger>
+          <DialogContent>
+             <DialogHeader>
+              <DialogTitle>Issue New Receipt</DialogTitle>
+              <DialogDescription>
+                This action is typically performed by a warehouse operator. This form is for demonstration purposes.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="farmerId">Farmer ID</Label>
+                <Input id="farmerId" placeholder="e.g., user-1" />
+              </div>
+              <Button className="w-full">Generate Receipt</Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+              <CardContent className="p-0">
+                  <Landmark className="w-10 h-10 mx-auto mb-2" />
+                  <h3 className="font-semibold">Request Loan</h3>
+                  <p className="text-xs text-muted-foreground">For a cooperative member</p>
+              </CardContent>
+            </Card>
+           </DialogTrigger>
+           <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Request a Loan for a Member</DialogTitle>
+              <DialogDescription>
+                Select a member's receipt to use as collateral for a loan application.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="receiptId">Collateral Receipt ID</Label>
+                <Input id="receiptId" placeholder="e.g., receipt-001" />
+              </div>
+               <div className="space-y-2">
+                <Label htmlFor="loanAmount">Loan Amount ($)</Label>
+                <Input id="loanAmount" type="number" placeholder="e.g., 5000" />
+              </div>
+              <Button className="w-full">Submit Loan Application</Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        <Dialog>
+            <DialogTrigger asChild>
+                <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
+                    <CardContent className="p-0">
+                        <ShoppingCart className="w-10 h-10 mx-auto mb-2" />
+                        <h3 className="font-semibold">View Marketplace</h3>
+                        <p className="text-xs text-muted-foreground">See available produce</p>
+                    </CardContent>
+                </Card>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Marketplace Access</DialogTitle>
+                    <DialogDescription>
+                        This would navigate to the marketplace page where users can buy and sell tokenized receipts.
+                    </DialogDescription>
+                </DialogHeader>
+                 <div className="flex justify-center pt-4">
+                    <Button size="lg" onClick={() => alert('Navigating to marketplace...')}>Go to Marketplace</Button>
+                </div>
+            </DialogContent>
+        </Dialog>
       </div>
 
       {/* Recent Activity Feed */}
