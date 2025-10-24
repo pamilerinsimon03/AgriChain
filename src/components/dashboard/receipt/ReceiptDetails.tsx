@@ -117,20 +117,16 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                         <CardDescription>Immutable log of this receipt's history.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                       <div className="relative pl-6">
-                            <div className="absolute left-0 top-0 h-full w-0.5 bg-border -translate-x-1/2 ml-3"></div>
+                       <div className="space-y-6">
                             {receipt.custodyTrail.map((event, index) => (
-                                <div key={index} className="relative flex items-start gap-4 mb-6 last:mb-0">
-                                    <div className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-primary -translate-x-1/2 ml-3"></div>
-                                    <div className="flex-1">
-                                        <p className="font-semibold">{event.action}</p>
-                                        <p className="text-sm text-muted-foreground flex items-center gap-2">
-                                            <User className="w-3 h-3"/> {event.actor} ({event.role})
-                                        </p>
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                            {custodyDates[index] || 'Loading...'}
-                                        </p>
-                                    </div>
+                                <div key={index}>
+                                    <p className="font-semibold">{event.action}</p>
+                                    <p className="text-sm text-muted-foreground flex items-center gap-2">
+                                        <User className="w-3 h-3"/> {event.actor} ({event.role})
+                                    </p>
+                                    <p className="text-xs text-muted-foreground mt-1">
+                                        {custodyDates[index] || 'Loading...'}
+                                    </p>
                                 </div>
                             ))}
                        </div>
@@ -145,7 +141,7 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                         <CardTitle className="flex items-center"><Camera className="mr-2"/>Attached Media</CardTitle>
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-2">
-                        {placeholderImages.placeholderImages.slice(0, 4).map((img) => (
+                        {placeholderImages.placeholderImages.map((img) => (
                             <Image 
                                 key={img.src}
                                 src={img.src} 
