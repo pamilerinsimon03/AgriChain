@@ -69,4 +69,8 @@ export type Farmer = {
   id: string;
   name: string;
   cooperativeId: string;
+  rating: number;
+  ratingsCount: number;
 }
+
+    

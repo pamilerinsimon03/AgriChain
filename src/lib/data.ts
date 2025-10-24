@@ -9,12 +9,12 @@ export const users: User[] = [
 ];
 
 export const farmers: Farmer[] = [
-    { id: 'farmer-101', name: 'Alice Peters', cooperativeId: 'user-1' },
-    { id: 'farmer-102', name: 'Benard Eze', cooperativeId: 'user-1' },
-    { id: 'farmer-103', name: 'Chidinma Okoro', cooperativeId: 'user-1' },
-    { id: 'farmer-104', name: 'David Musa', cooperativeId: 'user-1' },
-    { id: 'farmer-105', name: 'Frank Haruna', cooperativeId: 'coop-2' },
-    { id: 'farmer-106', name: 'Grace Adebayo', cooperativeId: 'coop-2' },
+    { id: 'farmer-101', name: 'Alice Peters', cooperativeId: 'user-1', rating: 4.8, ratingsCount: 25 },
+    { id: 'farmer-102', name: 'Benard Eze', cooperativeId: 'user-1', rating: 4.6, ratingsCount: 18 },
+    { id: 'farmer-103', name: 'Chidinma Okoro', cooperativeId: 'user-1', rating: 4.9, ratingsCount: 32 },
+    { id: 'farmer-104', name: 'David Musa', cooperativeId: 'user-1', rating: 4.5, ratingsCount: 12 },
+    { id: 'farmer-105', name: 'Frank Haruna', cooperativeId: 'coop-2', rating: 4.7, ratingsCount: 41 },
+    { id: 'farmer-106', name: 'Grace Adebayo', cooperativeId: 'coop-2', rating: 4.8, ratingsCount: 22 },
 ]
 
 export const receipts: Receipt[] = [
@@ -188,3 +188,5 @@ export const marketItems: MarketItem[] = [
     listTimestamp: new Date('2024-07-18T14:00:00Z').toISOString(),
   }
 ];
+
+    
