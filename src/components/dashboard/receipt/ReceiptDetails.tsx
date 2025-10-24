@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useState, useEffect } from 'react';
 import type { Receipt } from "@/lib/types";
 import {
     Card,
@@ -32,6 +34,12 @@ import {
 } from "lucide-react";
 
 export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
+  const [creationDate, setCreationDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCreationDate(format(new Date(receipt.creationTimestamp), "PPP p"));
+  }, [receipt.creationTimestamp]);
+
 
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-6 space-y-6">
@@ -85,7 +93,7 @@ export function ReceiptDetails({ receipt }: { receipt: Receipt }) {
                         <div>
                              <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center"><Calendar className="mr-2 w-4 h-4"/> Key Dates</h3>
                              <div className="text-sm">
-                                <p><strong>Created:</strong> {format(new Date(receipt.creationTimestamp), "PPP p")}</p>
+                                <p><strong>Created:</strong> {creationDate || 'Loading...'}</p>
                              </div>
                         </div>
                          <Separator />
