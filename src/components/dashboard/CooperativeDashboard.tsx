@@ -67,15 +67,15 @@ export default function CooperativeDashboard({ onRoleChange }: CooperativeDashbo
   return (
     <div className="space-y-6">
       {/* Top Summary */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard title="Members" value={totalMembers.toString()} icon={Users} description="Farmers in your cooperative" />
-        <StatCard title="Total Stored Value" value={`₦${(totalStoredValue / 1000000).toFixed(1)}M`} icon={Package} description="Estimated value of all crops" />
-        <StatCard title="Active Receipts" value={activeReceipts.toString()} icon={FileText} description="Total digital receipts held" />
-        <StatCard title="Pending Loans" value={coopLoans.filter(l => l.status === 'Pending').length.toString()} icon={Landmark} description="Awaiting lender approval" />
+        <StatCard title="Total Stored Value" value={`₦${(totalStoredValue / 1000000).toFixed(1)}M`} icon={Package} description="Value of crops" />
+        <StatCard title="Active Receipts" value={activeReceipts.toString()} icon={FileText} description="Digital receipts held" />
+        <StatCard title="Pending Loans" value={coopLoans.filter(l => l.status === 'Pending').length.toString()} icon={Landmark} description="Awaiting approval" />
       </div>
 
       {/* Action Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Dialog>
           <DialogTrigger asChild>
             <Card className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer">
@@ -135,7 +135,7 @@ export default function CooperativeDashboard({ onRoleChange }: CooperativeDashbo
         </Dialog>
 
         <Card 
-          className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
+          className="flex flex-col items-center justify-center p-6 text-center hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer sm:col-span-2 lg:col-span-1"
           onClick={() => onRoleChange('Buyer')}
         >
             <CardContent className="p-0">
@@ -155,37 +155,39 @@ export default function CooperativeDashboard({ onRoleChange }: CooperativeDashbo
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Member</TableHead>
-                <TableHead>Crop</TableHead>
-                <TableHead className="text-right">Quantity (t)</TableHead>
-                <TableHead className="text-center">Status</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {coopReceipts.slice(0, 5).map(receipt => {
-                  const farmer = farmers.find(f => f.id === receipt.ownerId);
-                  return (
-                    <TableRow key={receipt.id}>
-                        <TableCell className="font-medium">{farmer?.name || 'Unknown Farmer'}</TableCell>
-                        <TableCell>{receipt.cropType}</TableCell>
-                        <TableCell className="text-right">{receipt.quantity}</TableCell>
-                        <TableCell className="text-center">{getReceiptStatus(receipt)}</TableCell>
-                        <TableCell>{format(new Date(receipt.creationTimestamp), 'PP')}</TableCell>
-                        <TableCell className="text-right">
-                        <Button variant="outline" size="sm" asChild>
-                           <Link href={`/dashboard/receipt/${receipt.id}`}>View</Link>
-                        </Button>
-                        </TableCell>
-                    </TableRow>
-                  )
-              })}
-            </TableBody>
-          </Table>
+          <div className="w-full overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Member</TableHead>
+                  <TableHead>Crop</TableHead>
+                  <TableHead className="text-right">Quantity (t)</TableHead>
+                  <TableHead className="text-center">Status</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {coopReceipts.slice(0, 5).map(receipt => {
+                    const farmer = farmers.find(f => f.id === receipt.ownerId);
+                    return (
+                      <TableRow key={receipt.id}>
+                          <TableCell className="font-medium">{farmer?.name || 'Unknown Farmer'}</TableCell>
+                          <TableCell>{receipt.cropType}</TableCell>
+                          <TableCell className="text-right">{receipt.quantity}</TableCell>
+                          <TableCell className="text-center">{getReceiptStatus(receipt)}</TableCell>
+                          <TableCell>{format(new Date(receipt.creationTimestamp), 'PP')}</TableCell>
+                          <TableCell className="text-right">
+                          <Button variant="outline" size="sm" asChild>
+                             <Link href={`/dashboard/receipt/${receipt.id}`}>View</Link>
+                          </Button>
+                          </TableCell>
+                      </TableRow>
+                    )
+                })}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

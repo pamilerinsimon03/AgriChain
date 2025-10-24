@@ -37,14 +37,14 @@ export default function WarehouseDashboard() {
 
   return (
     <div className="space-y-6">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-4">
             <StatCard title="Total Inventory" value={`${totalQuantity.toLocaleString()} tons`} icon={Warehouse} description="Total crops stored"/>
-            <StatCard title="Receipts Issued" value={warehouseReceipts.length.toString()} icon={ShieldCheck} description="Immutable digital receipts"/>
-            <StatCard title="Crop Varieties" value={new Set(warehouseReceipts.map(r => r.cropType)).size.toString()} icon={Wheat} description="Different types of crops"/>
-            <StatCard title="Average Quality" value="A-" icon={Scale} description="Average quality grade of inventory"/>
+            <StatCard title="Receipts Issued" value={warehouseReceipts.length.toString()} icon={ShieldCheck} description="Digital receipts"/>
+            <StatCard title="Crop Varieties" value={new Set(warehouseReceipts.map(r => r.cropType)).size.toString()} icon={Wheat} description="Types of crops"/>
+            <StatCard title="Avg. Quality" value="A-" icon={Scale} description="Avg. quality grade"/>
         </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
         <Dialog open={isDepositOpen} onOpenChange={setIsDepositOpen}>
             <Card>
             <CardHeader>
@@ -72,7 +72,7 @@ export default function WarehouseDashboard() {
                 <DepositFlow closeDialog={() => setIsDepositOpen(false)} />
             </DialogContent>
         </Dialog>
-        <Card>
+        <Card className="lg:row-span-2">
           <CardHeader>
             <CardTitle>Inventory Overview</CardTitle>
             <CardDescription>
@@ -80,34 +80,36 @@ export default function WarehouseDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Receipt ID</TableHead>
-                  <TableHead>Crop</TableHead>
-                  <TableHead>Quantity (t)</TableHead>
-                  <TableHead>Owner</TableHead>
-                  <TableHead className="text-right">Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {warehouseReceipts.map(receipt => (
-                  <TableRow key={receipt.id}>
-                    <TableCell className="font-medium">
-                      ...{receipt.id.slice(-6)}
-                    </TableCell>
-                    <TableCell>{receipt.cropType}</TableCell>
-                    <TableCell>{receipt.quantity}</TableCell>
-                    <TableCell>...{receipt.ownerId.slice(-4)}</TableCell>
-                    <TableCell className="text-right">
-                       <Button asChild variant="outline" size="sm">
-                          <Link href={`/dashboard/receipt/${receipt.id}`}>View</Link>
-                       </Button>
-                    </TableCell>
+            <div className="w-full overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Receipt ID</TableHead>
+                    <TableHead>Crop</TableHead>
+                    <TableHead>Quantity (t)</TableHead>
+                    <TableHead>Owner</TableHead>
+                    <TableHead className="text-right">Action</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {warehouseReceipts.map(receipt => (
+                    <TableRow key={receipt.id}>
+                      <TableCell className="font-medium">
+                        ...{receipt.id.slice(-6)}
+                      </TableCell>
+                      <TableCell>{receipt.cropType}</TableCell>
+                      <TableCell>{receipt.quantity}</TableCell>
+                      <TableCell>...{receipt.ownerId.slice(-4)}</TableCell>
+                      <TableCell className="text-right">
+                         <Button asChild variant="outline" size="sm">
+                            <Link href={`/dashboard/receipt/${receipt.id}`}>View</Link>
+                         </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
       </div>
